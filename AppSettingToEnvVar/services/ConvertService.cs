@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Dynamic;
-using System.Text.Json;
-using System.Text.Json.Nodes;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace AppSettingToEnvVar.services;
 
@@ -53,6 +50,18 @@ public class ConvertJsonToEnvVarsService : IConvertJsonToEnvVarsService
 
                 break;
             case string:
+                result += key + KeyValueSeparator + (obj.Equals(string.Empty)? @"""""": obj) + Environment.NewLine;
+                break;
+            case decimal objDecimal:
+                result += key + KeyValueSeparator + objDecimal.ToString(System.Globalization.CultureInfo.InvariantCulture) + Environment.NewLine;
+                break;
+            case double objDouble:
+                result += key + KeyValueSeparator + objDouble.ToString(System.Globalization.CultureInfo.InvariantCulture) + Environment.NewLine;
+                break;
+            case bool objBool:
+                result += key + KeyValueSeparator + objBool.ToString(System.Globalization.CultureInfo.InvariantCulture).ToLowerInvariant() + Environment.NewLine;
+                break;
+            default:
                 result += key + KeyValueSeparator + obj + Environment.NewLine;
                 break;
         }
