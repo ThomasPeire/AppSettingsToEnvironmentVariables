@@ -53,16 +53,16 @@ public class ConvertJsonToEnvVarsService : IConvertJsonToEnvVarsService
                 result += key + KeyValueSeparator + (obj.Equals(string.Empty)? @"""""": obj) + Environment.NewLine;
                 break;
             case decimal objDecimal:
-                result += key + KeyValueSeparator + objDecimal.ToString(System.Globalization.CultureInfo.InvariantCulture) + Environment.NewLine;
+                result += key + KeyValueSeparator + @"""" + objDecimal.ToString(System.Globalization.CultureInfo.InvariantCulture) + @"""" + Environment.NewLine;
                 break;
             case double objDouble:
-                result += key + KeyValueSeparator + objDouble.ToString(System.Globalization.CultureInfo.InvariantCulture) + Environment.NewLine;
+                result += key + KeyValueSeparator + @"""" + objDouble.ToString(System.Globalization.CultureInfo.InvariantCulture) + @"""" + Environment.NewLine;
                 break;
             case bool objBool:
-                result += key + KeyValueSeparator + objBool.ToString(System.Globalization.CultureInfo.InvariantCulture).ToLowerInvariant() + Environment.NewLine;
+                result += key + KeyValueSeparator + @"""" + objBool.ToString(System.Globalization.CultureInfo.InvariantCulture).ToLowerInvariant() + @"""" + Environment.NewLine;
                 break;
             default:
-                result += key + KeyValueSeparator + obj + Environment.NewLine;
+                result += key + KeyValueSeparator + @"""" + obj + @"""" + Environment.NewLine;
                 break;
         }
 
